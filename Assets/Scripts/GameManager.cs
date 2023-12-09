@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public GameObject splash;
     public int pointsWorth = 1;
 
+    private bool smokeCleared = true;
+
     void Awake()
     {
         spawner = Singleton<Spawner>.Instance;
@@ -33,7 +35,10 @@ public class GameManager : MonoBehaviour
     {
         if (!gameStarted)
         {
-            if (Input.anyKeyDown) ResetGame();
+            if (Input.anyKeyDown && smokeCleared)
+            {
+                ResetGame();
+            }
         }
         else
         {
@@ -74,6 +79,12 @@ public class GameManager : MonoBehaviour
         spawner.active = false;
         gameStarted = false;
 
+        Invoke("SplashScreen", 2f);
+    }
+
+    void SplashScreen()
+    {
+        smokeCleared = true;
         splash.SetActive(true);
     }
 }
