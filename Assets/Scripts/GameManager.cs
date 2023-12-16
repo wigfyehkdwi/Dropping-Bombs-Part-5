@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
     {
         spawner.active = false;
         gameStarted = false;
+        smokeCleared = false;
 
         Invoke("SplashScreen", 2f);
     }
